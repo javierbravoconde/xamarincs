@@ -12,6 +12,7 @@ import {
     RouterModule,
     Routes
 } from '@angular/router';
+import { CsListenerComponent } from './cs-listener/cs-listener.component';
 
 const routes: Routes = [
      { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -23,7 +24,8 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     HomeComponent,
-    AboutComponent
+    AboutComponent,
+    CsListenerComponent
   ],
   imports: [
     BrowserModule,
