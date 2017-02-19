@@ -8,3 +8,6 @@ declare interface CSharpInterface {
 }
 
 declare var CSharp: CSharpInterface;
+
+interface Window { my: any; }
+

@@ -16,12 +16,40 @@ namespace App9
     [Activity(Label = "App9", MainLauncher = true)]
     public class MainActivity : Activity
     {
+        private WebView m_WebView;
 
         [Export]
         [JavascriptInterface]
         public void processEvent(string eventStr)
         {
-           
+            PushEvent("Hello from c#");
+        }
+
+        public void PushEvent(string eventStr)
+        {
+            try
+            {
+                using (var h = new Handler(Looper.MainLooper))
+                {
+                    try
+                    {
+                        h.Post(() =>
+                        {
+                            //var jsr = new JavascriptResult();
+                            var method = string.Format("my.namespace.publicFunc('{0}')", eventStr);
+                            m_WebView.EvaluateJavascript(method, null);
+                        });
+                    }
+                    catch (System.Exception ex)
+                    {
+                        throw;
+                    }
+                }
+            }
+            catch (System.Exception ex)
+            {
+                //MTODO proper logger
+            }
         }
 
         protected override void OnCreate(Bundle bundle)
@@ -31,18 +59,18 @@ namespace App9
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
 
-            var webView = FindViewById<WebView>(Resource.Id.webView);
-            webView.Settings.JavaScriptEnabled = true;
+            m_WebView = FindViewById<WebView>(Resource.Id.webView);
+            m_WebView.Settings.JavaScriptEnabled = true;
 
             // Use subclassed WebViewClient to intercept hybrid native calls
-            webView.SetWebChromeClient(new WebChromeClient());
-            webView.Settings.AllowUniversalAccessFromFileURLs = true; //allows javascript to load local files
+            m_WebView.SetWebChromeClient(new WebChromeClient());
+            m_WebView.Settings.AllowUniversalAccessFromFileURLs = true; //allows javascript to load local files
 
-            webView.AddJavascriptInterface(this, "CSharp");
+            m_WebView.AddJavascriptInterface(this, "CSharp");
             WebView.SetWebContentsDebuggingEnabled(true);
             // Load the rendered HTML into the view with a base URL 
             // that points to the root of the bundled Assets folder
-            webView.LoadUrl("file:///android_asset/index.html");
+            m_WebView.LoadUrl("file:///android_asset/index.html");
 
         }
 
