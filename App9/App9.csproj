@@ -75,8 +75,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
-    <None Include="Assets\AboutAssets.txt" />
-    <AndroidAsset Include="Assets\index.html" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml">
@@ -94,6 +92,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\favicon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\index.html" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\inline.js" />

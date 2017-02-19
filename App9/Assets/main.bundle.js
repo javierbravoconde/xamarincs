@@ -42547,6 +42547,11 @@ var AppComponent = (function () {
     function AppComponent() {
         this.title = 'app works!';
     }
+    AppComponent.prototype.addArticle = function (title, link) {
+        console.log("Adding article title");
+        CSharp.processEvent("hello");
+        return false;
+    };
     AppComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Component */])({
             selector: 'app-root',
@@ -45446,14 +45451,14 @@ var HashLocationStrategy = (function (_super) {
         if (url.length == 0) {
             url = this._platformLocation.pathname;
         }
-        //this._platformLocation.pushState(state, title, url);
+        this._platformLocation.pushState(state, title, url);
     };
     HashLocationStrategy.prototype.replaceState = function (state, title, path, queryParams) {
         var url = this.prepareExternalUrl(path + __WEBPACK_IMPORTED_MODULE_2__location__["a" /* Location */].normalizeQueryParams(queryParams));
         if (url.length == 0) {
             url = this._platformLocation.pathname;
         }
-        //this._platformLocation.replaceState(state, title, url);
+        this._platformLocation.replaceState(state, title, url);
     };
     HashLocationStrategy.prototype.forward = function () { this._platformLocation.forward(); };
     HashLocationStrategy.prototype.back = function () { this._platformLocation.back(); };
@@ -60101,7 +60106,7 @@ module.exports = "<p>\n  about works!\n</p>\n"
 /* 638 */
 /***/ function(module, exports) {
 
-module.exports = "<div>\r\n     <nav>\r\n         <a>Navigation:</a>\r\n         <ul>\r\n            \r\n            <li><a [routerLink]=\"['home']\">Home</a></li>\r\n            \r\n            <li><a [routerLink]=\"['about']\">About</a></li>\r\n                        \r\n        </ul>\r\n        \r\n    </nav>\r\n    \r\n     <router-outlet></router-outlet>\r\n    \r\n</div>\r\n"
+module.exports = "<div>\r\n    <button (click)=\"addArticle()\">\r\n        Submit link\r\n    </button>\r\n\r\n     <nav>\r\n         <a>Navigation:</a>\r\n         <ul>\r\n            \r\n            <li><a [routerLink]=\"['home']\">Home</a></li>\r\n            \r\n            <li><a [routerLink]=\"['about']\">About</a></li>\r\n                        \r\n        </ul>\r\n        \r\n    </nav>\r\n    \r\n     <router-outlet></router-outlet>\r\n    \r\n</div>\r\n"
 
 /***/ },
 /* 639 */
